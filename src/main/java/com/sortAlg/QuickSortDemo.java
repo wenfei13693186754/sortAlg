@@ -22,6 +22,7 @@ package com.sortAlg;
  */
 public class QuickSortDemo {
     public static void main(String[] args) {
+
         int arr[] = {1,4,2,8,-2,233};
         quickSort(arr,0,5);
         for(int a : arr){
