@@ -23,31 +23,32 @@ package com.sortAlg;
 public class QuickSortDemo {
     public static void main(String[] args) {
 
-        int arr[] = {1,4,2,8,-2,233};
+        int arr[] = {5,4,2,8,-2,233};
         quickSort(arr,0,5);
         for(int a : arr){
             System.out.println(a);
         }
 
     }
-    public static void quickSort(int array[], int low, int high) {// 传入low=0，high=array.length-1;
-        int pivot, p_pos, i, t;// pivot->位索引;p_pos->轴值。
-        if (low < high) {
-            p_pos = low;
-            pivot = array[p_pos];
-            for (i = low + 1; i <= high; i++)
-                if (array[i] > pivot) {
-                    p_pos++;
-                    t = array[p_pos];
-                    array[p_pos] = array[i];
-                    array[i] = t;
+
+    private static void quickSort(int arr[], int low, int high){
+        if(low<high){
+            int t;
+            int base_iden = low;
+            int baseValue = arr[low];
+            for(int i = low+1;i<=high;i++){
+                if(arr[i]>baseValue){
+                    base_iden++;
+                    t = arr[base_iden];
+                    arr[base_iden]=arr[i];
+                    arr[i]=t;
                 }
-            t = array[low];
-            array[low] = array[p_pos];
-            array[p_pos] = t;
-            // 分而治之
-            quickSort(array, low, p_pos - 1);// 排序左半部分
-            quickSort(array, p_pos + 1, high);// 排序右半部分
+            }
+            t = arr[base_iden];
+            arr[base_iden]=baseValue;
+            arr[low]=t;
+            quickSort(arr,low,base_iden-1);//排序左边值
+            quickSort(arr,base_iden+1,high);//排序右边值
         }
     }
 }
